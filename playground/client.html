@@ -8,9 +8,10 @@
 <body>
     <script>
         var peer = new Peer({
-            host: 'evening-plains-23599.herokuapp.com',
-            port: 443,
-            path: '/peerjs'
+            host: location.hostname,
+			port: location.port || (location.protocol === 'https:' ? 443 : 80),
+			path: '/peerjs',
+			debug: 3
         });
 
         peer.on('open', function (id) {
