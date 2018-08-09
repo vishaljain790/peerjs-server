@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 // create express peer server
 var ExpressPeerServer = require('peer').ExpressPeerServer;
+var path = require('path');
 
 var options = {
     debug: true
