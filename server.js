@@ -1,28 +1,23 @@
+// initialize express
 var express = require('express');
 var app = express();
+// create express peer server
 var ExpressPeerServer = require('peer').ExpressPeerServer;
-
-const port = process.env.PORT || 3000;
-
-app.get('/', function(req, res, next) { res.send('Hello world!'); });
-
-// =======
-
-var server = app.listen(port);
 
 var options = {
     debug: true
 }
 
-var peerserver = ExpressPeerServer(server, options);
+const port = process.env.PORT || 3000;
 
-app.use('/api', peerserver);
-
-// == OR ==
-
+// create a http server instance to listen to request
 var server = require('http').createServer(app);
-var peerserver = ExpressPeerServer(server, options);
 
-app.use('/peerjs', peerserver);
+// peerjs is the path that the peerjs server will be connected to.
+app.use('/peerjs', ExpressPeerServer(server, options));
+// Now listen to your ip and port.
 
+app.get('/', (req,res) => {
+    res.send('Hello world');
+});
 server.listen(port);
