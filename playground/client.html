@@ -9,14 +9,24 @@
     <script>
         var peer = new Peer({
             host: location.hostname,
-			port: location.port || (location.protocol === 'https:' ? 443 : 80),
-			path: '/peerjs',
-			debug: 3
+            port: location.port || (location.protocol === 'https:' ? 443 : 80),
+            path: '/peerjs',
+            debug: 3
         });
 
         peer.on('open', function (id) {
             console.log('My peer ID is: ' + id);
         });
+
+
+        function ping() {
+            console.log(peer)
+            peer.socket.send({
+                type: 'ping'
+            })
+            setTimeout(ping, 16000)
+        }
+        ping()
     </script>
 </body>
 
