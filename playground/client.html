@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.9/peer.min.js"></script>
+
+</head>
+
+<body>
+    <script>
+        var peer = new Peer({
+            host: 'evening-plains-23599.herokuapp.com',
+            port: 443,
+            path: '/peerjs'
+        });
+
+        peer.on('open', function (id) {
+            console.log('My peer ID is: ' + id);
+        });
+    </script>
+</body>
+
+
+</html>

@@ -20,4 +20,8 @@ app.use('/peerjs', ExpressPeerServer(server, options));
 app.get('/', (req,res) => {
     res.send('Hello world');
 });
+
+app.get('/connect', (req,res) => {
+        res.sendFile(path.join(__dirname + "/playground/client.html"));
+});
 server.listen(port);
